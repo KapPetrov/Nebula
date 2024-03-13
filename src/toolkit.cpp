@@ -12,6 +12,8 @@ int y = 100;
 int zee = 5;
 int cubecolor = WHITE;
 
+bool refresh = true;
+
 // Core engine function implementations
 void CreateEngine()
 {
@@ -39,7 +41,20 @@ void GameLoop()
 			x += speed;
 		}
 		
-		cleardevice();
+		// Instructions
+		if(GetAsyncKeyState('H'))
+		{
+			outtextxy(0, 0, "Press W and S to move the wireframe face. ESC to exit the app. Press G to continue.");
+			refresh = false;
+		}
+		
+		if(GetAsyncKeyState('G'))
+		{
+			refresh = true;
+		}
+		
+		if(refresh)
+			cleardevice();
        	
        	// Projections of the coordinates
        	int p = projection(x, zee);
@@ -72,6 +87,7 @@ void Watermark()
 	outtextxy(0, 40, "VALVE: INTRO SOUND/HAZARDOUS ENVIRONMENTS OST OF HALF LIFE (C)");
 	outtextxy(0, 80, "SCREAMING BRAIN STUDIOS: TEXTURES : All Screaming Brain Studios assets have been released under the");
 	outtextxy(0, 100, "CC0/Public Domain License.");
+	outtextxy(0, 580, "The following is a wireframe renderer demo. Press H for instructions.");
 	PlaySound("res/media/nebula.wav", NULL, SND_SYNC);
 }
 
