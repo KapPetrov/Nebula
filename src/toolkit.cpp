@@ -1,5 +1,6 @@
 #include "toolkit.h"
 
+// Focal Length
 int d = 1;
 
 // Core engine function implementations
@@ -69,6 +70,21 @@ void DrawTriangle(int x0, int y0, int x1, int y1, int x2, int y2, int color)
     DrawLine(x0, y0, x1, y1, color);
     DrawLine(x1, y1, x2, y2, color);
     DrawLine(x2, y2, x0, y0, color);
+}
+
+// Drawing functions implementation (3D)
+void DrawSampleWireframe(int x, int y, int zee, int cubecolor)
+{
+	// Projections of the coordinates
+    int p = projection(x, zee);
+    int p1 = projection(x, 100);
+    int p11 = projection(y, 100);
+    
+    // Draw the bottom face
+    DrawLine(p, p, p + 50, p + 50, cubecolor);
+    DrawLine(p, p , p1 + 100, p, cubecolor);
+	DrawLine(p1 + 100, p, p + 100, p + 40, cubecolor);
+	DrawLine(p + 50, p + 50, p + 100, p + 40, cubecolor);
 }
 
 // Math functions implementations

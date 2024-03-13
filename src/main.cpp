@@ -34,7 +34,9 @@ void loop()
 		// Instructions
 		if(GetAsyncKeyState('H'))
 		{
-			outtextxy(0, 0, "Press W and S to move the wireframe face. ESC to exit the app. Press G to continue.");
+			outtextxy(0, 0, "Press W and S to move the wireframe face, ESC to exit the app, G to continue.");
+			// FIXME: This implementation is terrible, if the user at this moment moves the
+			// wireframe, the game doesn't refresh the wireframe. Too bad!
 			refresh = false;
 		}
 		
@@ -46,17 +48,9 @@ void loop()
 		if(refresh)
 			cleardevice();
        	
-       	// Projections of the coordinates
-       	int p = projection(x, zee);
-       	int p1 = projection(x, 100);
-       	int p11 = projection(y, 100);
+       	// Draw wireframe
+       	DrawSampleWireframe(x, y, zee, cubecolor);
        	
-       	// Draw the bottom face
-       	DrawLine(p, p, p + 50, p + 50, cubecolor);
-       	DrawLine(p, p , p1 + 100, p, cubecolor);
-		DrawLine(p1 + 100, p, p + 100, p + 40, cubecolor);
-		DrawLine(p + 50, p + 50, p + 100, p + 40, cubecolor);
-
        	// Swap the buffers
         swapbuffers();
 	}

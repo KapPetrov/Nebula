@@ -14,6 +14,7 @@ void Watermark();
 // Drawing functions
 void DrawLine(int x0, int y0, int x1, int y1, int color);
 void DrawTriangle(int x0, int y0, int x1, int y1, int x2, int y2, int color);
+void DrawSampleWireframe(int x, int y, int zee, int cubecolor);
 
 // Math functions
 int projection(int axis, int z);
