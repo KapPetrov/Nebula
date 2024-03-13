@@ -65,14 +65,14 @@ void CloseEngine()
 void Watermark()
 {
 	readimagefile("res/media/nebula.jpg", 0, 0, 800, 600);
-	PlaySound("res/media/nebula.wav", NULL, SND_SYNC);
 	
-	cleardevice();
-	
+	// Man....
 	outtextxy(0, 0, "Powered by Nebula Engine, COPYRIGHT NEBULAFORGE STUDIOS 2024, ALL BETA VERSION MEDIA CREDITS GOES TO:");
 	outtextxy(0, 20, "WIKIPEDIA: NEBULA LOGO");
 	outtextxy(0, 40, "VALVE: INTRO SOUND/HAZARDOUS ENVIRONMENTS OST OF HALF LIFE (C)");
-	Sleep(10000);
+	outtextxy(0, 80, "SCREAMING BRAIN STUDIOS: TEXTURES : All Screaming Brain Studios assets have been released under the");
+	outtextxy(0, 100, "CC0/Public Domain License.");
+	PlaySound("res/media/nebula.wav", NULL, SND_SYNC);
 }
 
 // Drawing functions implementation (2D)
