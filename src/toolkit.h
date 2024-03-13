@@ -7,8 +7,7 @@
 #include <mmsystem.h>
 
 // Core engine functions
-void CreateEngine();
-void GameLoop();
+void CreateEngine(void (*gameloop)());
 void CloseEngine();
 void Watermark();
 

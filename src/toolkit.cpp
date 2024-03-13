@@ -1,75 +1,13 @@
 #include "toolkit.h"
 
-// Distance from camera to world/plane
 int d = 1;
 
-// Movement speed
-int speed = 3;
-
-// Specific variables for our cube
-int x = 200;
-int y = 100;
-int zee = 5;
-int cubecolor = WHITE;
-
-bool refresh = true;
-
 // Core engine function implementations
-void CreateEngine()
+void CreateEngine(void (*gameloop)())
 {
 	initwindow(800, 600, "Nebula - Beta");
 	Watermark();
-}
-
-void GameLoop()
-{
-    while(1)
-    {
-    	// Close window if escape key has been pressed
-        if(GetAsyncKeyState(VK_ESCAPE))
-        {
-            break;
-        }
-        
-        // Movement
-        if(GetAsyncKeyState('W'))
-		{
-			x -= speed;
-		}
-		if(GetAsyncKeyState('S'))
-		{
-			x += speed;
-		}
-		
-		// Instructions
-		if(GetAsyncKeyState('H'))
-		{
-			outtextxy(0, 0, "Press W and S to move the wireframe face. ESC to exit the app. Press G to continue.");
-			refresh = false;
-		}
-		
-		if(GetAsyncKeyState('G'))
-		{
-			refresh = true;
-		}
-		
-		if(refresh)
-			cleardevice();
-       	
-       	// Projections of the coordinates
-       	int p = projection(x, zee);
-       	int p1 = projection(x, 100);
-       	int p11 = projection(y, 100);
-       	
-       	// Draw the bottom face
-       	DrawLine(p, p, p + 50, p + 50, cubecolor);
-       	DrawLine(p, p , p1 + 100, p, cubecolor);
-		DrawLine(p1 + 100, p, p + 100, p + 40, cubecolor);
-		DrawLine(p + 50, p + 50, p + 100, p + 40, cubecolor);
-
-       	// Swap the buffers
-        swapbuffers();
-    }
+	gameloop();
 }
 
 void CloseEngine()
@@ -79,20 +17,23 @@ void CloseEngine()
 
 void Watermark()
 {
-	readimagefile("res/media/nebula.jpg", 0, 0, 800, 600);
+	readimagefile("res/media/Untitled.jpg", 0, 0, 800, 600);
 	
 	// Man....
-	outtextxy(0, 0, "Powered by Nebula Engine, COPYRIGHT NEBULAFORGE STUDIOS 2024, ALL BETA VERSION MEDIA CREDITS GOES TO:");
-	outtextxy(0, 20, "WIKIPEDIA: NEBULA LOGO");
+	setcolor(BLACK);
+	setbkcolor(WHITE);
+	outtextxy(0, 0, "COPYRIGHT NEBULAFORGE STUDIOS 2024, ALL BETA VERSION MEDIA CREDITS GOES TO:");
 	outtextxy(0, 40, "VALVE: INTRO SOUND/HAZARDOUS ENVIRONMENTS OST OF HALF LIFE (C)");
 	outtextxy(0, 80, "SCREAMING BRAIN STUDIOS: TEXTURES : All Screaming Brain Studios assets have been released under the");
 	outtextxy(0, 100, "CC0/Public Domain License.");
 	outtextxy(0, 580, "The following is a wireframe renderer demo. Press H for instructions.");
 	PlaySound("res/media/nebula.wav", NULL, SND_SYNC);
+	setbkcolor(BLACK);
+	setcolor(WHITE);
 }
 
 // Drawing functions implementation (2D)
-void DrawLine(int x0, int y0, int x1, int y1, int color) 
+void DrawLine(int x0, int y0, int x1, int y1, int color)
 { 
     bool steep = false; 
     if (std::abs(x0-x1)<std::abs(y0-y1)) { 
